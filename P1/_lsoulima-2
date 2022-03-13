@@ -1,0 +1,2 @@
+FROM frrouting/frr
+COPY ./_lsoulima-2.conf /etc/frr/daemons
