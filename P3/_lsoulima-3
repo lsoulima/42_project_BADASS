@@ -1,12 +1,5 @@
 # router_3
 
-    $ brctl addbr br0                                            // creation d un bridge
-    $ ip link set up dev br0                                     // activation du bridge
-    $ ip link add vxlan10 type vxlan id 10 dstport 4789          // creation d une interface vxlan
-    $ ip link set up dev vxlan10                                 // activation d interface vxlan
-    $ brctl addif br0 vxlan10                                    // ajout interface vxlan10 au bridge
-    $ brctl addif br0 eth0                                       // ajout interface eth0 au bridge
-
     $ vtysh                                                      // ouvrir le shell frrouting
     $ config t                                                   // se mettre en mode configuration
     hostname <nom du vtep>                                 // ici router_lsoulima-3
@@ -26,7 +19,6 @@
         !
         address-family l2vpn evpn
             neighbor 1.1.1.1 activate
-            advertise-all-vni
         exit-address-family
     !
     router ospf

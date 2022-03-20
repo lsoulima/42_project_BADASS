@@ -1,11 +1,4 @@
-# router_3
-
-brctl addbr br0                                            
-ip link set up dev br0                                     
-ip link add vxlan10 type vxlan id 10 dstport 4789          
-ip link set up dev vxlan10                                 
-brctl addif br0 vxlan10                                   
-brctl addif br0 eth0                                      
+# router_3                                 
 
 vtysh                                                      
 config t                                                   
@@ -26,7 +19,6 @@ config t
         !
         address-family l2vpn evpn
             neighbor 1.1.1.1 activate
-            advertise-all-vni
         exit-address-family
     !
     router ospf
