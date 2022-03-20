@@ -1,6 +1,7 @@
 # STATIC CONFIG
 
 `frr1`
+
     ip link add br0 type bridge
     ip link set dev br0 up
     ip addr add 10.1.1.1/24 dev eth0
@@ -11,6 +12,7 @@
     brctl addif br0 vxlan10
 
 `frr2`
+
     ip link add br0 type bridge
     ip link set dev br0 up
     ip addr add 10.1.1.2/24 dev eth0
@@ -21,15 +23,18 @@
     brctl addif br0 vxlan10
 
 `host1`
+
     ip a add 30.1.1.1/24 dev eth0
 
 `host2`
+
     ip a add 30.1.1.2/24 dev eth0
 
 
 # DYNAMIC CONFIG
 
 `frr1`
+
     ip link add br0 type bridge
     ip link set dev br0 up
     ip addr add 10.1.1.1/24 dev eth0
@@ -40,6 +45,7 @@
     brctl addif br0 vxlan10
 
 `frr2`
+
     ip link add br0 type bridge
     ip link set dev br0 up
     ip addr add 10.1.1.2/24 dev eth0
@@ -50,20 +56,23 @@
     brctl addif br0 vxlan10
 
 `host1`
+
     ip a add 30.1.1.1/24 dev eth0
 
 `host2`
+
     ip a add 30.1.1.2/24 dev eth0
 
 
 
+# EXTRA
 
+**show interfaces**
 
+    ip addr show eth0
+    ip link show eth1
+    ip -d link show vxlan10
 
-<!-- show interfaces -->
-ip addr show eth0
-ip link show eth1
-ip -d link show vxlan10
+**display mac address table**
 
- <!-- display mac address table -->
-brctl showmacs br0
+    brctl showmacs br0
