@@ -35,8 +35,11 @@
 - VXLAN:
     - Virtual eXtensible Local Area Network (VXLAN) is a tunneling protocol that tunnels Ethernet (layer 2) traffic over an IP (layer 3) network.
     - The differences with a VLAN: 
-- switch
-- bridge
+[devices](https://www.geeksforgeeks.org/network-devices-hub-repeater-bridge-switch-router-gateways/)
+-  Switch:
+    A device that connects multiple devices together. Switches allow devices to share and transfer data, enabling communication between devices on the network. Switches work by processing packets of data and routing them to the intended destination(s).
+- bridge:
+    A bridge operates at the data link layer. A bridge is a repeater, with add on the functionality of filtering content by reading the MAC addresses of source and destination. It is also used for interconnecting two LANs working on the same protocol. It has a single input and single output port, thus making it a 2 port device.
 - The differences between broadcast and multicast.
 - The expected operation of the topology
 
@@ -60,3 +63,7 @@
 - VTYSH:
     * (Virtual teletype) is a virtual port and used to get Telnet or SSH access to the device.VTY is solely used for inbound connections to the device. These connections are all virtual with no hardware associated with them.
     * An integrated shell for the FRR routing engine. It amalgamates all the CLI commands defined in each of the daemons and presents them to the user in a single shell. It provides a Cisco-like modal CLI, and many of the commands are similar to Cisco IOS commands. There are different modes to the CLI, and certain commands are only available within a specific mode.
+
+- RIB & FIB: [https://writemem.co.uk/what-is-a-rib-and-a-fib/]
+    The elements that we’ve discussed so far are all linked together, there is a flow from one database to another.
+    The best paths from EIGRP’s RIB and the best paths from BGP’s RIB are passed into the routing table RIB. Where competing paths exist from multiple routing protocols then Administrative Distance (AD) as a tiebreaker – lower is better.The winning paths are then passed to the FIB to be used for forwarding packets on to the next-hop router. The same process has also happened on the next router and the next one, until the packet reaches its destination.
