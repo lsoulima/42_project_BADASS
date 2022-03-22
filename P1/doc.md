@@ -33,4 +33,9 @@ Step 5: Launch GNS3 on Ubuntu 20.04
     `sudo gns3`
     config --> Run the appliances on my computer --> Next ... Finish
 
-//https://computingforgeeks.com/how-to-install-gns3-on-ubuntu/
+[https://computingforgeeks.com/how-to-install-gns3-on-ubuntu/]
+
+step 6: Create and build images
+    sudo docker build -t alpino -f _lsoulima-1_host .
+    sudo docker build -t frfr -f _lsoulima-2 .
+[https://www.gns3.com/community/blog/create-a-router-with-docker-and-free-range-routing]
