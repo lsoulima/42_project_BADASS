@@ -27,7 +27,8 @@
     A routing components that work with the Quagga routing engine. [ref](https://linux.die.net/man/8/bgpd)
 - routing engine service: !!
 - Busybox:
-    Logiciel qui implémente un grand nombre des commandes standard sous Unix, à l'instar des GNU Core Utilities
+    Logiciel qui implémente un grand nombre des commandes standard sous Unix, à l'instar des GNU Core Utilities.
+    
     Size of Busybox image ~ 2 MB
     Size of Alpine image ~ 5 MB
     Size of Ubuntu image ~ 188 MB
@@ -41,6 +42,7 @@
 - VXLAN vs VLAN: !!
     * Benefits: segmentation, Flexibilty, Security
     * VXLAN: (Virtual eXtensible Local Area Network)  is a tunneling protocol that tunnels Ethernet (layer 2) traffic over an IP (layer 3) network.
+    VxLAN creates virtual layer-2 segments, called VNI's. VNI's run over the top of a layer-3 network. VxLAN switches use a special interface called a VTEP. This bridges VNIs to the layer-3 network. When traffic comes in, the VTEP encapsulates the traffic, and sends it to a destination VTEP where it is decapsulated.
     * VLAN: Reduce Overhead by limiting the size of each brodcast domain
 -  Switch:
     A device that connects multiple devices together. Switches allow devices to share and transfer data, enabling communication between devices on the network. Switches work by processing packets of data and routing them to the intended destination(s).
@@ -60,6 +62,7 @@
     BGP routers connected inside the same AS through BGP belong to an internal BGP session, or IBGP. In order to prevent routing table loops, IBGP does not advertise IBGP-learned routes to other routers in the same session. As such, IBGP requires a full mesh of all peers. For large networks, this quickly becomes unscalable. Introducing route reflectors removes the need for the full-mesh.
 [see more...](https://www.cbtnuggets.com/blog/technology/networking/networking-basics-what-are-bgp-route-reflectors-for-ipv6)
 - VTEP:
+    Switches and routers that participate in VxLAN has a special interface called VTEP. The CTEP provides the connection between the overlay and the underlay. Each VTEP has an IP address in the underlay network, it also has one or more VNIs.
     The VXLAN tunnel endpoint (VTEP) is the device that’s responsible for encapsulating and de-encapsulating layer 2 traffic. This device is the connection between the overlay and the underlay network. The VTEP comes in two forms: Software (host-based), Hardware (gateway)
 - VNI:
     The VXLAN Network Identifier (VNI) identifies the VXLAN and has a similar function as the VLAN ID for regular VLANs. We use 24 bits for the VNI, which means we can create 16,777,215 ( ~16 million) VXLANs. That’s a lot, compared to those 4094 VLANs with a 12-bit VLAN ID. We can create plenty of VXLANs, which means a large service provider with even thousands of customers can use as many VXLANs per customer as needed.
@@ -78,3 +81,8 @@
 - RIB & FIB: [see more...](https://writemem.co.uk/what-is-a-rib-and-a-fib/)
     The elements that we’ve discussed so far are all linked together, there is a flow from one database to another.
     The best paths from EIGRP’s RIB and the best paths from BGP’s RIB are passed into the routing table RIB. Where competing paths exist from multiple routing protocols then Administrative Distance (AD) as a tiebreaker – lower is better.The winning paths are then passed to the FIB to be used for forwarding packets on to the next-hop router. The same process has also happened on the next router and the next one, until the packet reaches its destination.
+
+- Why we'll need loopback interfaces?
+    * we'll use the loopback IP as the rdv point in the multicast topology...
+    * the VTEP gets IP address from the loopback
+    (make sure all loopback interfaces are added into OSPF, and are in sparse mode.)
